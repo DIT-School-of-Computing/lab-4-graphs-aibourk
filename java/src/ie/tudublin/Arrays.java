@@ -10,8 +10,8 @@ public class Arrays extends PApplet
 
 	String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
-	float[] rainfall = {200, 260, 300, 150, 100, 50, 10, 40, 67, 160, 400, 420};
-	// float[] rainfall = {50,100,150,200,250,300,350,400,450,500,450,400};
+	// float[] rainfall = {200, 260, 300, 150, 100, 50, 10, 40, 67, 160, 400, 420};
+	float[] rainfall = {50,100,150,200,250,300,350,400,450,500,450,400};
 
 	public float map1(float a, float b, float c, float d, float e)
 	{
@@ -102,7 +102,10 @@ public class Arrays extends PApplet
 	
 	public void draw()
 	{	
+		
 		float w = width * 0.8f; //400 / total width/length of chart
+		int start = 50; //start of the graph's x axis
+
 		switch (mode) {
 			case 0:
 				background(0);
@@ -132,7 +135,6 @@ public class Arrays extends PApplet
 				//the bars of the barchart
 				for(int i = 0; i < months.length; i++)
 				{
-					int start = 50;
 					float widthOfColumn = w / (float)months.length;
 					fill(i*20, 100, 360);
 					rect(start + (i * widthOfColumn), width-start, widthOfColumn, -((rainfall[i]/500) * 400));
@@ -140,7 +142,27 @@ public class Arrays extends PApplet
 
 				break;
 			case 2: //line graph
+				int spacing = 40;
+				
 				background(0);			
+				fill(360, 0, 100);
+				stroke(360, 0, 100);
+				
+				//the axis
+				line(width * 0.1f, width * 0.1f, width * 0.1f, width - (width * 0.1f)); // 50,50,50,450
+				line(width * 0.1f, width - (width * 0.1f), width - (width * 0.1f), width - (width * 0.1f)); //50,450,450,450
+				
+				//the ticks and labels
+				for(int i = 50; i < width-(w * 0.1); i = i + (int)w/10)
+				{
+					line(width * 0.1f, i, (width * 0.1f) - 5, i);
+					text(((i-50)/40) * 50, (width * 0.02f), width - i );
+				}
+				for	(int i = 0; i < months.length; i++)
+				{
+					text(months[i], 50+(i*35) , 470);
+				}
+
 				
 				break;
 		}
