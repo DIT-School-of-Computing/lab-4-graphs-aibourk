@@ -10,8 +10,8 @@ public class Arrays extends PApplet
 
 	String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
-	float[] rainfall = {200, 260, 300, 150, 100, 50, 10, 40, 67, 160, 400, 420};
-	// float[] rainfall = {50,100,150,200,250,300,350,400,450,500,450,400};
+	// float[] rainfall = {200, 260, 300, 150, 100, 50, 10, 40, 67, 160, 400, 420};
+	float[] rainfall = {50,100,150,200,250,300,350,400,450,500,450,400};
 
 	public float map1(float a, float b, float c, float d, float e)
 	{
@@ -141,7 +141,7 @@ public class Arrays extends PApplet
 				}
 
 				break;
-			case 2: //line graph
+			case 2: //trend line
 				float spacing = (w/months.length);
 				
 				background(0);			
@@ -172,6 +172,34 @@ public class Arrays extends PApplet
 					line(start + (i * spacing)+20, 400 - ((rainfall[i]/500) * 400), start + ((i+1) * spacing)+20, 400 - ((rainfall[(i+1)]/500) * 400) );
 	
 				}
+				break;
+			case 3:
+				background(0);			
+				fill(360, 0, 100);
+				stroke(360, 0, 100);
+
+				int centre = width/2;
+				float angle = 0;
+				float tot = 0;
+
+				//total rainfall
+				for(float f:rainfall)
+				{
+					tot += f;
+				}
+
+				// drawing pi chart slices
+				for(int i = 0; i < months.length; i++)
+				{
+					fill(i*20, 100, 360);
+					float arc = map(rainfall[i], 0, tot, 0, TWO_PI);
+					float startAngle = angle;
+					float endAngle = angle + arc;
+					arc(centre, centre, w, w, startAngle, endAngle);
+					angle += arc;
+				}
+
+				
 
 				break;
 		}
