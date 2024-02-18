@@ -10,8 +10,8 @@ public class Arrays extends PApplet
 
 	String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
-	// float[] rainfall = {200, 260, 300, 150, 100, 50, 10, 40, 67, 160, 400, 420};
-	float[] rainfall = {50,100,150,200,250,300,350,400,450,500,450,400};
+	float[] rainfall = {200, 260, 300, 150, 100, 50, 10, 40, 67, 160, 400, 420};
+	// float[] rainfall = {50,100,150,200,250,300,350,400,450,500,450,400};
 
 	public float map1(float a, float b, float c, float d, float e)
 	{
@@ -196,9 +196,17 @@ public class Arrays extends PApplet
 					float startAngle = angle;
 					float endAngle = angle + arc;
 					arc(centre, centre, w, w, startAngle, endAngle);
+
+					//labelling slices
+					fill(0, 0, 100);
+					stroke(0, 0, 100);
+					text(months[i], centre + cos(angle + arc/2) * (width/2 - 25), centre + sin(angle + arc/2) * (width/2 - 25));
+
 					angle += arc;
+
 				}
 
+				
 				
 
 				break;
