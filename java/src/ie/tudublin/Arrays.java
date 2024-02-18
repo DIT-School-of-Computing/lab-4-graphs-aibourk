@@ -10,8 +10,8 @@ public class Arrays extends PApplet
 
 	String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
-	// float[] rainfall = {200, 260, 300, 150, 100, 50, 10, 40, 67, 160, 400, 420};
-	float[] rainfall = {50,100,150,200,250,300,350,400,450,500,450,400};
+	float[] rainfall = {200, 260, 300, 150, 100, 50, 10, 40, 67, 160, 400, 420};
+	// float[] rainfall = {50,100,150,200,250,300,350,400,450,500,450,400};
 
 	public float map1(float a, float b, float c, float d, float e)
 	{
@@ -142,7 +142,7 @@ public class Arrays extends PApplet
 
 				break;
 			case 2: //line graph
-				int spacing = 40;
+				float spacing = (w/months.length);
 				
 				background(0);			
 				fill(360, 0, 100);
@@ -163,7 +163,16 @@ public class Arrays extends PApplet
 					text(months[i], 50+(i*35) , 470);
 				}
 
-				
+				// the lines
+				for(int i = 0; i < months.length-1; i++)
+				{
+					fill(360, 0, 100);
+					stroke(360, 0, 100);
+					
+					line(start + (i * spacing)+20, 400 - ((rainfall[i]/500) * 400), start + ((i+1) * spacing)+20, 400 - ((rainfall[(i+1)]/500) * 400) );
+	
+				}
+
 				break;
 		}
 	}
