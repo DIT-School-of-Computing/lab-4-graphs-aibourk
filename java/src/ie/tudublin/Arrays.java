@@ -6,7 +6,9 @@ import processing.core.PApplet;
 
 public class Arrays extends PApplet
 {
-	String[] months = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
+	int mode = 0;
+
+	String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
 	float[] rainfall = {200, 260, 300, 150, 100, 50, 10, 40, 67, 160, 400, 420};
 
@@ -29,6 +31,7 @@ public class Arrays extends PApplet
 	public void settings()
 	{
 		size(500, 500);
+
 
 		String[] m1 = months;
 		months[0] = "XXX";
@@ -87,21 +90,49 @@ public class Arrays extends PApplet
 	public void setup() {
 		colorMode(HSB);
 		background(0);
-		randomize();
-		
-		
+		randomize();		
 	}
 
+	public void keyPressed() {
+		if (key >= '0' && key <= '9') {
+			mode = key - '0';
+		}
+		println(mode);
+	}
 	
 	public void draw()
 	{	
+		switch (mode) {
+			case 0:
+				background(0);
+				textSize(15);
+                text("Click different numbers for different graphs", 140, 250);
+				break;
+			case 1:
+				background(0);
+				float w = width * 0.8f; //400 / total width/length of chart
+			
+				fill(360, 0, 100);
+				stroke(360, 0, 100);
+				line(width * 0.1f, width * 0.1f, width * 0.1f, width - (width * 0.1f)); // 50,50,50,450
+				line(width * 0.1f, width - (width * 0.1f), width - (width * 0.1f), width - (width * 0.1f)); //50,450,450,450
+				
+				for(int i = 50; i < width-(w * 0.1); i = i + (int)w/10)
+				{
+					line(width * 0.1f, i, (width * 0.1f) - 5, i);
+				}
 
-		background(0);
-		float w = width / (float)months.length;
-		for(int i = 0 ; i < months.length ;  i ++)
-		{
-			float x = map1(i, 0, months.length, 0, width);
-			rect(x, height, w, -rainfall[i]);
+
+				// float w = width / (float)months.length;
+				// for(int i = 0 ; i < months.length ;  i ++)
+				// {
+				// 	float x = map1(i, 0, months.length, 0, width);
+				// 	rect(x, height, w, -rainfall[i]);
+				// }
+				break;
+			case 2:
+				background(0);
+				break;
 		}
 	}
 }
